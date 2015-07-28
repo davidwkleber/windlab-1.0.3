@@ -1,11 +1,32 @@
 Arduino JSON: change log
 ========================
 
+v4.2
+----
+
+* Switched back to old library layout (issues #39, #43 and #45)
+* Removed global new operator overload (issue #40, #45 and #46)
+* Added an example with EthernetServer
+
+v4.1
+----
+
+* Added DynamicJsonBuffer (issue #19)
+
+v4.0
+----
+
+* Unified parser and generator API (issue #23)
+* Updated library layout, now requires Arduino 1.0.6 or newer
+
+**BREAKING CHANGE**: API changed significantly, see [Migrating code to the new API](https://github.com/bblanchon/ArduinoJson/wiki/Migrating-code-to-the-new-API).
+
+
 v3.4
 ----
 
 * Fixed escaped char parsing (issue #16)
-  
+
 
 v3.3
 ----

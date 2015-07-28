@@ -5,16 +5,25 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var serialListener = require('./serialListener');
-serialListener();
+
+var serialListener = require('child_process').fork(__dirname+'/serialListener.js');
+var serialWriter = require('./serialWriter');
+serialWriter();
+
+serialListener.on('message', function(m) {
+	console.log('app got message: '+ m);
+});
+
+
+serialListener.send('message');
 
  dataFrameContent = 'welcome';
  // dataFrameContent = 'lineGraph';
 // dataFrameContent = 'powerCurveGraph';
 iFrameContent = 'infoFrame';
-// var serialListener = require('./lib/serialListener');
 
 var routes = require('./routes/index');
+
 
 var pitchAngle = require('./routes/pitchAngle');
 var windSpeed = require('./routes/windSpeed');
