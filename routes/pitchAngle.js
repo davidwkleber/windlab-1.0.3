@@ -36,6 +36,10 @@ console.log('pitchAngle post');
 	var diffAngle = 0;
 	var serialValue = 0;
 	pitchAngleValue = req.param('pitchAngleValue', null);
+	
+	//		serialListener.send('interfaceData', { pitchAngleValue: pitchAngleValue });
+
+	
 		console.log('pitchAngleValue param in PA.js '+ req.param('pitchAngleValue', null));
 		console.log('pitchAngleValue value  in PA.js '+ pitchAngleValue);
 			console.log('? by Pitch Angle '+pitchAngleValue);

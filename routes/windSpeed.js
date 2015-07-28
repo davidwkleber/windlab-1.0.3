@@ -25,7 +25,8 @@ router.post('/', function(req, res, next){
 console.log('windSpeed post');
 console.log('windSpeed value in post: ', req.param('windSpeedValue', null));
 	windSpeedValue = req.param('windSpeedValue', null);
-	
+	// serialListener.send('interfaceData',{ windSpeedValue: windSpeedValue });
+
 	
 	// var serialCallValue = Math.floor(windSpeedValue*0.625);
 	var serialCallValue = Math.floor(windSpeedValue);

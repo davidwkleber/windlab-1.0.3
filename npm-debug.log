@@ -32,12 +32,12 @@
 17 silly addNameRange { name: 'child_process', range: '*', hasData: false }
 18 verbose request where is /child_process
 19 verbose request registry https://registry.npmjs.org/
-20 verbose request id 73711fc9ea20a59e
+20 verbose request id 87ae97455badb286
 21 verbose url raw /child_process
 22 verbose url resolving [ 'https://registry.npmjs.org/', './child_process' ]
 23 verbose url resolved https://registry.npmjs.org/child_process
 24 verbose request where is https://registry.npmjs.org/child_process
-25 info trying registry request attempt 1 at 14:36:20
+25 info trying registry request attempt 1 at 16:57:01
 26 http GET https://registry.npmjs.org/child_process
 27 http 404 https://registry.npmjs.org/child_process
 28 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
@@ -45,28 +45,28 @@
 28 verbose headers   'cache-control': 'max-age=0',
 28 verbose headers   'content-length': '51',
 28 verbose headers   'accept-ranges': 'bytes',
-28 verbose headers   date: 'Tue, 28 Jul 2015 12:36:24 GMT',
+28 verbose headers   date: 'Tue, 28 Jul 2015 14:57:04 GMT',
 28 verbose headers   via: '1.1 varnish',
 28 verbose headers   age: '0',
 28 verbose headers   connection: 'keep-alive',
-28 verbose headers   'x-served-by': 'cache-fra1221-FRA',
+28 verbose headers   'x-served-by': 'cache-ams4140-AMS',
 28 verbose headers   'x-cache': 'MISS',
 28 verbose headers   'x-cache-hits': '0',
-28 verbose headers   'x-timer': 'S1438086984.508695,VS0,VE116' }
+28 verbose headers   'x-timer': 'S1438095424.853043,VS0,VE99' }
 29 silly registry.get cb [ 404,
 29 silly registry.get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
 29 silly registry.get     'content-type': 'application/json',
 29 silly registry.get     'cache-control': 'max-age=0',
 29 silly registry.get     'content-length': '51',
 29 silly registry.get     'accept-ranges': 'bytes',
-29 silly registry.get     date: 'Tue, 28 Jul 2015 12:36:24 GMT',
+29 silly registry.get     date: 'Tue, 28 Jul 2015 14:57:04 GMT',
 29 silly registry.get     via: '1.1 varnish',
 29 silly registry.get     age: '0',
 29 silly registry.get     connection: 'keep-alive',
-29 silly registry.get     'x-served-by': 'cache-fra1221-FRA',
+29 silly registry.get     'x-served-by': 'cache-ams4140-AMS',
 29 silly registry.get     'x-cache': 'MISS',
 29 silly registry.get     'x-cache-hits': '0',
-29 silly registry.get     'x-timer': 'S1438086984.508695,VS0,VE116' } ]
+29 silly registry.get     'x-timer': 'S1438095424.853043,VS0,VE99' } ]
 30 silly lockFile 512a7ef6-child-process child_process@
 31 silly lockFile 512a7ef6-child-process child_process@
 32 error 404 404 Not Found: child_process

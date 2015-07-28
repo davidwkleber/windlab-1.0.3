@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 
-var serialListener = require('child_process').fork(__dirname+'/serialListener.js');
+serialListener = require('child_process').fork(__dirname+'/serialListener.js');
 var serialWriter = require('./serialWriter');
 serialWriter();
 

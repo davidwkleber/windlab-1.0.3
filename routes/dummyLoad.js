@@ -29,6 +29,8 @@ console.log('dummyLoad post');
 
 console.log('dummyLoad value in post: ', req.param('dummyLoadValue', null));
 	dummyLoadValue = req.param('dummyLoadValue', null);
+	//	serialListener.send('interfaceData', { dummyLoadValue: dummyLoadValue });
+
 	var serialCallValue = Math.floor((dummyLoadValue-1)*5);
 	
 		console.log(' rounded dummy load: '+serialCallValue);

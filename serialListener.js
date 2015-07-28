@@ -1,5 +1,9 @@
 
 module.exports = serialListener;
+var windSpeedValue = 0;
+var dummyLoadValue = 1;
+var pitchAngleValue = 1;
+
 
 // var app = require('./app');
 var portConfig = require('./portConfig.json');
@@ -55,7 +59,7 @@ function serialListener()
 	
  console.log('serialListenerInit called ');
 
-var io = require('socket.io').listen(1337);
+io = require('socket.io').listen(1337);
 
 
 console.log('serialListener: setup connection now');
@@ -96,8 +100,10 @@ io.sockets.on('connection', function(socket){
  var receivedData = '';
  var chunksIn = 0;
  function handleDIserialPortData(data) {
+ 
+ 
     // DIserialPort.on('data', function(data) {
-			console.log('DataInput : '+data);
+	//		console.log('DataInput : '+data);
 
 		chunksIn = chunksIn+1;
         receivedData += data.toString();
@@ -150,7 +156,7 @@ io.sockets.on('connection', function(socket){
 			// adjust RPM due to Arduino issues.
 			dataItem.rpm = Math.floor(dataItem.rpm / 1000);
 
-		 console.log( "serialListener send JSON : \n"+sendJSON);
+		// console.log( "serialListener send JSON : \n"+sendJSON);
 	
 			// have to put JSON dataItem back into a string to send properly, why things cannot handle JSON objects???
 			io.emit('updateData', JSON.stringify(dataItem));
@@ -178,7 +184,9 @@ io.sockets.on('connection', function(socket){
 	serialListener();
 });
 
-
+process.on('interfaceData', function(idata) {
+	console.log('serialListener got message '+idata);
+});
    
 DIserialPort.on('data', handleDIserialPortData) ;
 
