@@ -91,7 +91,7 @@ console.log('serialValue '+serialValue);
 	PAserialWriter.write('PA', setPAValue);
 	lastPitchAngle = pitchAngleValue;
 	// res.body.PAcurrentAngle = PAcurrentAngle;
-	res.render('index', {title: 'Wind Labor', PAcurrentAngle: lastPitchAngle });
+	res.send('pitch angle page');
 })
 
 router.put('/', function(req, res, next){

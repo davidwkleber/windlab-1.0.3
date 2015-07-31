@@ -7,8 +7,8 @@ var bodyParser = require('body-parser');
 
 
 serialListener = require('child_process').fork(__dirname+'/serialListener.js');
-var serialWriter = require('./serialWriter');
-serialWriter();
+// var serialWriter = require('./serialWriter');
+// serialWriter();
 
 serialListener.on('message', function(m) {
 	console.log('app got message: '+ m);
@@ -28,7 +28,7 @@ var routes = require('./routes/index');
 var pitchAngle = require('./routes/pitchAngle');
 var windSpeed = require('./routes/windSpeed');
 var dummyLoad = require('./routes/dummyLoad');
-// var dataInput = require('./routes/dataInput');
+//var dataInput = require('./routes/dataInput');
 var guages = require('./routes/guages');
 
 var showDataFrame = require('./routes/showDataFrame');

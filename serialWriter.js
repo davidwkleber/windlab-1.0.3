@@ -1,12 +1,10 @@
 
 module.exports = serialWriter;
 
-// var app = require('./app');
 var portConfig = require('./portConfig.json');
 
 var serialport = require("serialport");
 var SerialPort = serialport.SerialPort; // localize object constructor
-// var SerialPort = require("serialport").SerialPort
 
 var simpleJson = {
   "date": "19/5/2015:16:6:66:666",
@@ -63,8 +61,10 @@ var socketServer;
 var socketio = require('socket.io');
 socketServer = socketio.listen(app, true);
 */
-function serialWriter()
-{	//
+ function serialWriter()
+{	};
+
+	//
 	//
 	//http://www.barryvandam.com/node-js-communicating-with-arduino/ 
 	//copied from the server.js file
@@ -133,21 +133,23 @@ WSserialPort.on('data', handleWSserialPortData) ;
 PAserialPort.on('data', handlePAserialPortData) ;
 DLserialPort.on('data', handleDLserialPortData) ;
 
-};
+// };
 
 
 serialWriter.write = function( id, value ) {
 	console.log('serialWriter write value: '+value);
 
-     sleep(200, function() {
-    }); 
+   //  sleep(200, function() {
+   // }); 
 	
 	console.log('serialWriter write value: '+value);
 	if( id === 'w' ) {
-		setImmediate(WSserialPort.write(value, function(err, results) {
+	// setImmediate(WSserialPort.write(value, function(err, results) {
+			WSserialPort.write(value, function(err, results) {
+
 			console.log('Blink_err ' + err);
 			console.log('Blink_results from windSpeed ' + results);
-		}));
+		});
 	} else if (id === 'PA') {
 		console.log('PAserialWriter.write '+value);
 

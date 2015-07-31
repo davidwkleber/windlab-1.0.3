@@ -51,6 +51,7 @@ console.log('dummyLoad value in post: ', req.param('dummyLoadValue', null));
 	DLserialWriter.write('DL', serialCall);
 	
 			console.log('dummyLoad serialCall done: '+serialCall);
+	res.send('dummy  load post');
 
    
 })
@@ -62,7 +63,7 @@ router.put('/', function(req, res, next){
 })
 
 router.get('/about', function(req, res){
-	res.send('wind speed About page');
+	res.send('dummy  load about');
 })
 
 module.exports = router;

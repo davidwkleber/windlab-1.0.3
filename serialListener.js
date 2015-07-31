@@ -185,7 +185,7 @@ io.sockets.on('connection', function(socket){
 });
 
 process.on('interfaceData', function(idata) {
-	console.log('serialListener got message '+idata);
+	console.log('serialListener got interface message '+idata);
 });
    
 DIserialPort.on('data', handleDIserialPortData) ;

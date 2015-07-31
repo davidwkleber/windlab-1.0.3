@@ -32,6 +32,8 @@
         <p class="WScurrentValue" id="WScurrentValue" ><span>0 m/s</span></p>
 
         <script>
+			
+		var hasTouch = (typeof TouchEvent !== "undefined");
 var mouseIsDown = "false";
 var WSframeToPlay = 6;
 var WScurrentValue = 0;
@@ -50,9 +52,8 @@ $output       = $('#output');
             }).data("spriteClip");
 WSinstance.currentFrame = WSframeToPlay;
 
-            
-            WSinstance.$el
-                .on("touchstart", function () {
+            if (hasTouch) {
+				WSinstance.$el.on("touchstart", function () {
 
 	//				console.log('mouse down');
 					mouseIsDown = "true";
@@ -62,11 +63,12 @@ WSinstance.currentFrame = WSframeToPlay;
 											
 					}
 				})
-			
-				// $(".awesome-button").on('touchmove', function (event) {
-				.on('touchmove', function (TouchEvent) {
+				}
 				
-// console.log('touchmove in button '+mouseIsDown);
+				if( hasTouch ) {
+				// $(".awesome-button").on('touchmove', function (event) {
+				WSinstance.$el.on('touchmove', function (TouchEvent) {
+				
 		
 				if ( mouseIsDown === "true" ) {
 		//								console.log('mouseIsDown == true in touchmove');
@@ -74,22 +76,15 @@ WSinstance.currentFrame = WSframeToPlay;
 					//check to make sure there is data to compare against
 					if (typeof(last_position.x) != 'undefined' ) {
 					//get the change from last position to this position
-		//			console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXget mouse location from event first time');
 
 					var deltaX = last_position.x - event.touches[0].clientX,
 						deltaY = last_position.y - event.touches[0].clientY;
 
-// console.log("Frame to Play "+WSframeToPlay);
 				var initialWSfameToPlay = WSframeToPlay;
-	//			console.log('deltaY: '+deltaY);			
 				WSframeToPlay = Math.floor(+WSframeToPlay + +deltaY/2);
-// console.log('Play WS frame: '+WSframeToPlay);
 
 				if 	(+WSframeToPlay >= +WSnumFrames) WSframeToPlay = +WSnumFrames;
 				if 	(+WSframeToPlay <= +6) WSframeToPlay = +6;
-// WSframeToPlay = Math.floor(WSframeToPlay);		
-	//			console.log('Play WS frame: '+WSframeToPlay);
-// WSinstance.stops([initialWSfameToPlay,WSframeToPlay]);	
 				
 				// WSinstance.stop();
 				WSinstance.gotoAndStop(WSframeToPlay);	
@@ -110,14 +105,15 @@ WSinstance.currentFrame = WSframeToPlay;
 					}
             
 			})
-			
-                .on("touchend", function () {
+			}
+			if( hasTouch ) {
+                WSinstance.$el.on("touchend", function () {
 				
 				  $(".WSinitButton-checkbox").prop("checked", "on")
 					mouseIsDown = "false";
 		//									console.log('mouseIsDown = false ');
 
-           //         WSinstance.stop();
+                //    WSinstance.stop();
 					event.preventDefault();
 					WScurrentValue = (WSinstance.currentFrame/WSnumFrames)*100;
 
@@ -133,9 +129,19 @@ WSinstance.currentFrame = WSframeToPlay;
 						console.log('client post done ');
 					})
                 });
-
-            WSinstance.$dispatcher
-                .on(SpriteClip.Event.ENTER_FRAME, function (e, clip) {
+				} else {
+			    WSinstance.$el.on("mouseup", function () {
+					WSmouseIsDown = "false";
+                    WSinstance.stop();
+					event.preventDefault();
+	//				console.log('client pitchAngle: '+PAinstance.currentFrame);
+					var posting = $.post( '/windSpeed', { windSpeedValue: WScurrentValue } );
+					posting.done(function( data ) {
+	//					console.log('client windSpeed post done ');
+					});
+                });
+				}
+            WSinstance.$dispatcher.on(SpriteClip.Event.ENTER_FRAME, function (e, clip) {
 
 					WScurrentValue = (WSinstance.currentFrame/WSnumFrames)*100;
 
@@ -154,7 +160,7 @@ WSinstance.currentFrame = WSframeToPlay;
 					if( WS_fanOn == "true" ) {
 								  $(".WSinitButton-checkbox").prop("checked", "on")
 
-				  	event.preventDefault();
+				  	
 
 					if 	(+WSinstance.currentFrame < +WSnumFrames) {
 
@@ -165,7 +171,8 @@ WSinstance.currentFrame = WSframeToPlay;
 		//			console.log('client windSpeed BUTTON: '+WSinstance.currentFrame);
 										
 					WScurrentValue = (WSinstance.currentFrame/WSnumFrames)*100;
-
+					
+					event.preventDefault();
 					var posting = $.post( '/windSpeed', { windSpeedValue: WScurrentValue } );
 										
 					var valueText = reutrnWindSpeed(WScurrentValue);	
@@ -182,7 +189,7 @@ WSinstance.currentFrame = WSframeToPlay;
 				if( WS_fanOn == "true" ) {
 							  $(".WSinitButton-checkbox").prop("checked", "on")
 
-			  	event.preventDefault();
+			  	
 
 				if 	(WSinstance.currentFrame > 6) {
 
@@ -191,6 +198,7 @@ WSinstance.currentFrame = WSframeToPlay;
 					WScurrentValue = (WSinstance.currentFrame/WSnumFrames)*100;
 
 			//		console.log('client windSpeed BUTTON: '+WSinstance.currentFrame);
+			event.preventDefault();
 					var posting = $.post( '/windSpeed', { windSpeedValue: WScurrentValue } );
 										
 					var valueText = reutrnWindSpeed(WScurrentValue);	

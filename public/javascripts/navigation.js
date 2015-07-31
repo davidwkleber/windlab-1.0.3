@@ -12,6 +12,7 @@ $(document).ready(function() {
 							console.log("got into tourFrame");	
 					window.parent.dataSocket.removeListener( 'updateData', window.parent.handleLineGraphData );
 					window.parent.dataSocket.removeListener( 'updateData', window.parent.handleRecordData );
+					window.parent.dataSocket.removeListener( 'updateData', window.parent.handleGuageData );
 					window.parent.dataSocket.removeListener( 'updateData', window.parent.handlePowerCurveData );
 
 					window.parent.$("#rightFrame").empty();
@@ -24,7 +25,8 @@ $(document).ready(function() {
 				case "powerCurveGraph":
 					window.parent.dataSocket.removeListener( 'updateData', window.parent.handleLineGraphData );
 					window.parent.dataSocket.removeListener( 'updateData', window.parent.handleRecordData );
-
+					window.parent.dataSocket.removeListener( 'updateData', window.parent.handleGuageData );
+					window.parent.dataSocket.removeListener( 'updateData', window.parent.handlePowerCurveData );
 					console.log("got into powerGraph");
 					window.parent.$("#rightFrame").empty();
 					window.parent.$("#rightFrame").load("/powerCurve");
@@ -34,6 +36,9 @@ $(document).ready(function() {
 
 					break;
 				case "timeDomainGraph":
+					window.parent.dataSocket.removeListener( 'updateData', window.parent.handleLineGraphData );
+					window.parent.dataSocket.removeListener( 'updateData', window.parent.handleRecordData );
+					window.parent.dataSocket.removeListener( 'updateData', window.parent.handleGuageData );
 					window.parent.dataSocket.removeListener( 'updateData', window.parent.handlePowerCurveData );
 					console.log("got into timeGraph");
 					window.parent.$("#rightFrame").empty();

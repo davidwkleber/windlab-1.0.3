@@ -51,7 +51,7 @@ console.log('windSpeed value in post: ', req.param('windSpeedValue', null));
 	WSserialWriter.write('w', serialCall);
 	
 			console.log('windSpeed serialCall done: '+serialCall);
-
+res.send('wind speed page');
    
 })
 

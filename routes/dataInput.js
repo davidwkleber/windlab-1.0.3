@@ -3,9 +3,9 @@
 // module for setting Wind Speed of the wind fan
 //
 console.log("DataInput called");
-var DIserialListener = require('../serialListener');
+var DIserialWriter = require('../serialWriter');
 
-DIserialListener();
+DIserialWriter();
 
 
 var express = require('express');
@@ -67,7 +67,7 @@ console.log('dataInput value in post is now: ', req.param('dataInputValue', null
 
 	console.log('dataInput serialCall: '+serialCall);
 	// 	res.render('index', {title: 'Wind Lab', seeValue: dataInputValue }); 
-	DIserialListener.write('DI', serialCall);
+	DIserialWriter.write('DI', serialCall);
 
 			console.log('dataInput serialCall done: '+serialCall);
 
