@@ -3,6 +3,7 @@
 	<h1 id=lineGraphTitle>rpm</h1>
 	<script type="text/javascript" src="/javascripts/lineScan.js"></script>
 
+<script type="text/javascript" src="/javascripts/addWindPitchCurrentToData.js"></script>
 
 	<form>
 		<div id="graphSelectButtons">
@@ -123,9 +124,9 @@
 				
 				function handleLineGraphData(data) {
 					// console.log('lineGraph dataSelected: '+dataSelected);
-				//	console.log('lineGraph update: ' + data);
+					// console.log('lineGraph update: ' + data);
 					dataItem = JSON.parse(data);
-			//		console.log('lineGraph updateData power ' + dataItem.power);
+			//	console.log('lineGraph updateData power ' + dataItem.power);
 if ( dataItem.power.length == 0 ) {
 	console.log("zero data here" );
 }

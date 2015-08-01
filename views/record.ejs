@@ -6,6 +6,7 @@
 <script type="text/javascript" src="/javascripts/JSON2CSV.js"></script>
 <script type="text/javascript" src="/javascripts/JSON2TSV.js"></script>
 
+<script type="text/javascript" src="/javascripts/addWindPitchCurrentToData.js"></script>
 
   	<div class="saveDataButtonDiv">
 		<button class="saveDataButton" id="saveDataButton" name="saveDataButton" onclick="saveDataFunction()">Save</button>
@@ -87,16 +88,22 @@
 			var recordsocket = io.connect('http://127.0.0.1:1337');
 
 			recordsocket.on('connect', function (data) {
-				//	console.log('record client connected ');
+				console.log('record client connected ');
 				//	console.log('record connected data ' + data);
 			
 				jQuery(function ($) {
 					recordsocket.on('updateData', function (data) {
-						// console.log('record update raw: ' + data);
+						 console.log('record update raw: ' + data);
 						if( recordDataFlag) {
-							recordDataItem = JSON.parse(data);
+									
+				// add the client based data to the data object
+				console.log("record: data: " + data);
+				dataIn = addWindPitchCurrentToData(data)
+				console.log("record: dataIn: " + dataIn);
+
+							recordDataItem = JSON.parse(dataIn);
 						// 	console.log('record updateData.power  ' + recordDataItem.power);
-							recordedData.push(data);
+							recordedData.push(dataIn);
 						}
 					});	
 			

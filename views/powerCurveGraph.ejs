@@ -4,6 +4,9 @@
 	</div>
 	
 	
+	<script type="text/javascript" src="/javascripts/addWindPitchCurrentToData.js"></script>
+
+	
 <script type="text/javascript" src="/javascripts/JSON2CSV.js"></script>
 <script type="text/javascript" src="/javascripts/JSON2TSV.js"></script>
 	<script type="text/javascript" src="/lib/canvasJS/canvasjs.min.js"></script>
@@ -111,7 +114,11 @@
 		
 			
 	
-		function handlePowerCurveData(dataIn) {
+		function handlePowerCurveData(dataInFromStream) {
+				dataIn = addWindPitchCurrentToData(dataInFromStream);
+
+				// add the client based data to the data object
+				// dataIn = addWindPitchCurrentToData(dataInFromStream)
 					// save the new JSON data to a buffer
 					// this buffer is used for figuring which meanData to show
 					inData.push(dataIn);

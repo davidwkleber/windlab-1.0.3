@@ -34,6 +34,8 @@
 	</form>
 </div>
         <script>
+		
+	pitchAngleValue = 1;
 	
 		var hasTouch = (typeof TouchEvent !== "undefined");
 		
@@ -114,6 +116,7 @@ PAinstance.gotoAndStop(+PAframeToPlay);
                     PAinstance.stop();
 					event.preventDefault();
 	//				console.log('client pitchAngle: '+PAinstance.currentFrame);
+					pitchAngleValue = PAinstance.currentFrame;
 					var posting = $.post( '/pitchAngle', { pitchAngleValue: PAinstance.currentFrame } );
 					posting.done(function( data ) {
 						console.log('client pitchAngle post done ');
@@ -125,6 +128,9 @@ PAinstance.gotoAndStop(+PAframeToPlay);
                     PAinstance.stop();
 					event.preventDefault();
 	//				console.log('client pitchAngle: '+PAinstance.currentFrame);
+	
+						pitchAngleValue = PAinstance.currentFrame;
+
 					var posting = $.post( '/pitchAngle', { pitchAngleValue: PAinstance.currentFrame } );
 					posting.done(function( data ) {
 	//					console.log('client pitchAngle post done ');
@@ -147,7 +153,9 @@ PAinstance.gotoAndStop(+PAframeToPlay);
 
 
 		//			console.log('client pitchAngle BUTTON: '+PAinstance.currentFrame);
-					
+		
+										pitchAngleValue = PAinstance.currentFrame;
+
 					var posting = $.post( '/pitchAngle', { pitchAngleValue: PAinstance.currentFrame} );
 										
 					var PAcurrentAngle = returnPitchAngle(PAinstance.currentFrame);
@@ -160,6 +168,7 @@ PAinstance.gotoAndStop(+PAframeToPlay);
 				};
 				} else {
 		//			console.log("PA init Forward");
+
 					var posting = $.post( '/pitchAngle', { pitchAngleValue: "up" } );
 				
 				};
@@ -174,6 +183,9 @@ PAinstance.gotoAndStop(+PAframeToPlay);
 					PAinstance.prevFrame();
 
 		//			console.log('client pitchAngle BUTTON: '+PAinstance.currentFrame);
+		
+							pitchAngleValue = PAinstance.currentFrame;
+
 					var posting = $.post( '/pitchAngle', { pitchAngleValue: PAinstance.currentFrame } );
 					
 					var PAcurrentAngle = returnPitchAngle(PAinstance.currentFrame);

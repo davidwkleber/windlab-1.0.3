@@ -1,7 +1,7 @@
 var limit = 500;
  var n = 40,
     random = d3.random.normal(0, .2),
-   data = d3.range(limit).map(random);
+   lineData = d3.range(limit).map(random);
    
  // var data=[];
  
@@ -46,7 +46,7 @@ svg.append("g")
 var path = svg.append("g")
     .attr("clip-path", "url(#clip)")
   .append("path")
-    .datum(data)
+    .datum(lineData)
     .attr("class", "line")
     .attr("d", line);
  
@@ -64,8 +64,10 @@ function tick( value, axisMax ) {
  // data.push(random());
 
 // console.log('tick value: '+value);
- if (value >= 0) {
-  data.push(+value);
+// if (value >= 0) {
+  
+  
+  lineData.push(+value);
  
 /* this is for dynamic adjustment of y axis
 	var ymin = d3.min(data);
@@ -94,8 +96,8 @@ function tick( value, axisMax ) {
       .each("end", 00);
  
   // pop the old data point off the front
-  data.shift();
-  }
+  lineData.shift();
+ // }
   // console.log("tick value in lineScan: "+value);
  
 }

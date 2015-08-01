@@ -40,6 +40,9 @@ var WScurrentValue = 0;
 var WSnumFrames = 160;
 var WSsaveValue = 0;
 var WS_fanOn = "true";
+
+windSpeedValue = 0;
+
 		//setup a variable to store our last position
 var last_position = {},
 $output       = $('#output');
@@ -118,6 +121,9 @@ WSinstance.currentFrame = WSframeToPlay;
 					WScurrentValue = (WSinstance.currentFrame/WSnumFrames)*100;
 
 		//			console.log('client windSpeed: '+WSinstance.currentFrame);
+		
+					windSpeedValue = WScurrentValue;
+					
 					var posting = $.post( '/windSpeed', { windSpeedValue: WScurrentValue } );
 					
 					var valueText = reutrnWindSpeed(WScurrentValue);	
@@ -134,7 +140,11 @@ WSinstance.currentFrame = WSframeToPlay;
 					WSmouseIsDown = "false";
                     WSinstance.stop();
 					event.preventDefault();
+					
 	//				console.log('client pitchAngle: '+PAinstance.currentFrame);
+	
+						windSpeedValue = WScurrentValue;
+
 					var posting = $.post( '/windSpeed', { windSpeedValue: WScurrentValue } );
 					posting.done(function( data ) {
 	//					console.log('client windSpeed post done ');
@@ -173,6 +183,8 @@ WSinstance.currentFrame = WSframeToPlay;
 					WScurrentValue = (WSinstance.currentFrame/WSnumFrames)*100;
 					
 					event.preventDefault();
+										windSpeedValue = WScurrentValue;
+
 					var posting = $.post( '/windSpeed', { windSpeedValue: WScurrentValue } );
 										
 					var valueText = reutrnWindSpeed(WScurrentValue);	
@@ -199,6 +211,8 @@ WSinstance.currentFrame = WSframeToPlay;
 
 			//		console.log('client windSpeed BUTTON: '+WSinstance.currentFrame);
 			event.preventDefault();
+								windSpeedValue = WScurrentValue;
+
 					var posting = $.post( '/windSpeed', { windSpeedValue: WScurrentValue } );
 										
 					var valueText = reutrnWindSpeed(WScurrentValue);	
@@ -223,6 +237,7 @@ WSinstance.currentFrame = WSframeToPlay;
 				WScurrentValue = WSsaveValue;
 				console.log("save "+WScurrentValue);
 				WSinstance.currentFrame = (WScurrentValue/100)*WSnumFrames;
+					windSpeedValue = WScurrentValue;
 
 					var posting = $.post( '/windSpeed', { windSpeedValue: WScurrentValue } );
 					
@@ -236,6 +251,8 @@ WSinstance.currentFrame = WSframeToPlay;
 	//				console.log("INIT ON");
 				WSsaveValue = WScurrentValue;
 	console.log("save "+WScurrentValue);
+						windSpeedValue = WScurrentValue;
+
 					var posting = $.post( '/windSpeed', { windSpeedValue: 0 } );
 					
 					WSinstance.currentFrame = 1;

@@ -11,8 +11,12 @@
 					var theStart = new Date().getSeconds();
 
 
-					function handleRecordData(data) {
+					function handleRecordData(dataIn) {
 						// console.log('record update raw: ' + data);
+										// add the client based data to the data object
+				console.log("add: dataIn"+dataIn);
+				data = addWindPitchCurrentToData(dataIn);
+				console.log("add: data" +data);
 						if( recordDataFlag) {
 							recordDataItem = JSON.parse(data);
 						// 	console.log('record updateData.power  ' + recordDataItem.power);
@@ -49,7 +53,7 @@
 		}
 		
 		function saveDataFunction() {
-					console.log('record button in saveDataFunction is: '+$(".recordButtons-checkbox:checked").val());
+			//		console.log('record button in saveDataFunction is: '+$(".recordButtons-checkbox:checked").val());
 
 			if ( recordDataFlag === true ) {
 					stopRecordFunction()
@@ -79,16 +83,7 @@
 			a.textContent = "Download data as JSON";
 			
 			saveAs(blob,fileName);
-	/*
-			
-			var parent = document.getElementById("saveDataDiv");
-			var linkPlace = document.getElementById("saveDataLinkPlace");
-			var linkStuff = document.createElement("p");
-			linkStuff.appendChild(a);
-			linkStuff.id = "saveDataLinkPlace";
-			parent.replaceChild(linkStuff,linkPlace);
-			
-			*/
+
 			recordedData = []
 
 		}
@@ -99,7 +94,7 @@
 				recordSelection = $(".recordButtons-checkbox:checked").val();
 			//	console.log("init on? "+PAinitSelection);
 				if (recordSelection != "on") {
-					console.log("Record ON");
+					console.log("Record ONNNN");
 					recordFunction()
 		
 				} else {
