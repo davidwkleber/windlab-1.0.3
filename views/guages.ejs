@@ -37,7 +37,7 @@ var dataItem;
 
 		updateGauge("current", dataItem.current);
 		updateGauge("voltage", dataItem.voltage);
-		updateGauge("rpm", dataItem.rpm);
+		updateGauge("rpm", Math.floor(dataItem.rpm / 1000));
 		updateGauge("power", dataItem.power);
 			 
 	};
