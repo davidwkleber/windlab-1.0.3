@@ -14,10 +14,11 @@
 					function handleRecordData(dataIn) {
 						// console.log('record update raw: ' + data);
 										// add the client based data to the data object
-				console.log("add: dataIn"+dataIn);
-				data = addWindPitchCurrentToData(dataIn);
-				console.log("add: data" +data);
+	
 						if( recordDataFlag) {
+			//					console.log("add: dataIn"+dataIn);
+				data = addWindPitchCurrentToData(dataIn);
+			// console.log("add: data" +data);
 							recordDataItem = JSON.parse(data);
 						// 	console.log('record updateData.power  ' + recordDataItem.power);
 							recordedData.push(data);
